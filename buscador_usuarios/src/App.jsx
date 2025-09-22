@@ -3,8 +3,10 @@ import axios from 'axios'
 import SearchInput from './components/SearchInput.jsx'
 import Card from './components/Card.jsx'
 import { ToastContainer, toast } from 'react-toastify'
+import { useAuth } from './context/AuthContext.jsx'
 
 export default function App() {
+  const { logout } = useAuth()
   const [usuarios, setUsuarios] = useState([])
   const [filtrados, setFiltrados] = useState([])
   const [error, setError] = useState(null)
@@ -47,6 +49,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 space-y-4">
+      <button onClick={logout} className="bg-red-500 text-white px-3 py-1 rounded float-right ">Logout</button>
       <h1 className="text-3xl font-bold text-center mb-4"> 🔎 Buscador de Usuarios</h1>
       <SearchInput onSearch={filtrarUsuarios} />
 
